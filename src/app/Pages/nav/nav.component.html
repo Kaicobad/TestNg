@@ -1,0 +1,20 @@
+<label for="fname">First name:</label>
+<!-- <input type="text" (input)="getText($event)"> -->
+<input type="text" [(ngModel)]="searchValue">
+
+<p>your input : {{searchValue}}</p>
+
+<div *ngFor ="let item of informations">
+    <table>
+        <tr>
+          <th>Company</th>
+          <th>Contact</th>
+          <th>Country</th>
+        </tr>
+        <tr>
+          <td>{{item.company}}</td>
+          <td>{{item.contact}}</td>
+          <td>{{item.country}}</td>
+        </tr>
+      </table>
+</div>
