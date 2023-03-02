@@ -18,3 +18,21 @@
         </tr>
       </table>
 </div>
+
+<!-- <div>
+  <form #loginForm = "ngForm" (ngSubmit)="login(loginForm.value)">
+    <input type="text" name="name" ngModel>
+    <input type="password" name="password" ngModel>
+    <button>ngSubmit</button>
+  </form>
+</div> -->
+
+
+<div>
+  <p>{{title}}</p>
+  <form [formGroup]="loginForm" (ngSubmit)="loginReactive()">
+    <input type="text" placeholder="Enter Name" name="name" formControlName ="name"><br><br>
+    <input type="password" placeholder="Password" name="password" FormControlName ="password"><br><br>
+    <button>Login</button>
+  </form>
+</div>
