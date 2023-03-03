@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl,FormGroup } from "@angular/forms";
+import { FormControl,FormGroup,Validators } from "@angular/forms";
+import { Response } from "../../model/response";
+import { LoginserviceService } from "../../services/loginservice.service";
 
 
 @Component({
@@ -9,11 +11,18 @@ import { FormControl,FormGroup } from "@angular/forms";
 })
 export class NavComponent implements OnInit {
 
+  rsponseresult: any;
+
+  msisdn : any;
+  token : any;
+
   title = "Reactive Forms";
-  constructor() {
-  }
+  constructor
+    (
+      private loginService: LoginserviceService
+    ) { }
   ngOnInit(): void {
-    throw new Error('Method not implemented.');
+    // this.getTokeString();
   }
   searchValue: string = 'ipun';
   getText(eventdata: Event) {
@@ -32,11 +41,36 @@ export class NavComponent implements OnInit {
   }
 
   loginForm = new FormGroup({
-    name:new FormControl(''),
-    password: new FormControl('')
+    name:new FormControl('',Validators.required),
+    password: new FormControl('', Validators.required)
   })
 
   loginReactive(){
     console.log(this.loginForm.value);
+
+    this.getTokeString();
+  }
+
+  get namevalidation(){
+    return this.loginForm.get('name');
+  }
+
+  getTokeString()
+  {
+    this.msisdn = this.loginForm.value.name;
+
+    // this.loginService
+    //     .getLoginData(this.msisdn)
+    //     .subscribe((response) =>
+    //     {
+    //       this.rsponseresult = response;
+    //       Response = this.rsponseresult;
+    //       this.token = this.rsponseresult.Data;
+    //       console.log(this.rsponseresult);
+    //     });
+
+    return this.loginService.getLoginData(this.msisdn);
+   
+
   }
 }

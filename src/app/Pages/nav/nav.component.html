@@ -31,8 +31,16 @@
 <div>
   <p>{{title}}</p>
   <form [formGroup]="loginForm" (ngSubmit)="loginReactive()">
-    <input type="text" placeholder="Enter Name" name="name" formControlName ="name"><br><br>
-    <input type="password" placeholder="Password" name="password" FormControlName ="password"><br><br>
+    <input type="text" placeholder="Enter Name" name="name" formControlName ="name">
+    <span style="color:red" *ngIf="namevalidation && namevalidation.invalid && namevalidation.touched">
+      please enter your name !
+    </span>
+    <br><br>
+    <input type="password" placeholder="Password" name="password" formControlName ="password"><br><br>
     <button>Login</button>
   </form>
 </div>
+
+
+<p>{{token}}</p>
+<!-- <p>{{Response}}</p> -->
